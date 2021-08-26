@@ -21,8 +21,11 @@ function addTodo(event) {
     todoDiv.classList.add('todo')
 
     //Create LI
-    const newTodo = document.createElement('li')
-    newTodo.innerText = todoInput.value;
+    const newTodo = document.createElement('li');
+    const todoText = document.createElement('p');
+    todoText.classList.add('todo-text');
+    todoText.innerText = todoInput.value;
+    newTodo.appendChild(todoText);
     newTodo.classList.add('todo-item');
     todoDiv.appendChild(newTodo);
 
@@ -39,6 +42,7 @@ function addTodo(event) {
     todoDiv.appendChild(trashbutton);
 
     //append to list
+    todoDiv.classList.add('fade-in-bottom');
     todoList.appendChild(todoDiv);
 
     //Adiciona para o localStorage
@@ -55,7 +59,7 @@ function deleteCheck(e) {
     if (item.classList[0] === 'trash-btn') {
         const todo = item.parentElement;
         //animation
-        todo.classList.add('fall');
+        todo.classList.add('slide-out-elliptic-left-bck');
         removeLocalTodos(todo);
         todo.addEventListener('transitionend', function() {
             todo.remove();
@@ -64,6 +68,7 @@ function deleteCheck(e) {
     //COMPLETE CHECK
     if (item.classList[0] === 'complete-btn') {
         const todo = item.parentElement;
+        todo.classList.remove('fade-in-bottom');
         todo.classList.toggle('completed');
     }
 }
@@ -122,8 +127,11 @@ function getTodos() {
         todoDiv.classList.add('todo')
 
         //Create LI
-        const newTodo = document.createElement('li')
-        newTodo.innerText = todo;
+        const newTodo = document.createElement('li');
+        const todoText = document.createElement('p');
+        todoText.classList.add('todo-text');
+        todoText.innerText = todo;
+        newTodo.appendChild(todoText);
         newTodo.classList.add('todo-item');
         todoDiv.appendChild(newTodo);
 
@@ -140,6 +148,7 @@ function getTodos() {
         todoDiv.appendChild(trashbutton);
 
         //append to list
+        todoDiv.classList.add('fade-in-bottom');
         todoList.appendChild(todoDiv);
     })
 }
