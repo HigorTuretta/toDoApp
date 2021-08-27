@@ -14,9 +14,16 @@ body {
 
 header {
     font-size: 1.5rem;
+    margin-top: 2rem;
 }
 
-header,
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 form {
     min-height: 11vh;
     display: flex;

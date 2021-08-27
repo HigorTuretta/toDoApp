@@ -3,6 +3,7 @@ const todoInput = document.querySelector('.todo-input');
 const todoButton = document.querySelector('.todo-button');
 const todoList = document.querySelector('.todo-list');
 const filterOption = document.querySelector('.filter-todo');
+const data = document.querySelector('.bemvindo');
 
 //Event Listeners
 document.addEventListener('DOMContentLoaded', getTodos);
@@ -115,6 +116,11 @@ function saveLocalTodos(todo) {
 
 function getTodos() {
     let todos;
+    now = new Date
+    dayName = new Array("Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado")
+    monName = new Array("janeiro", "fevereiro", "março", "abril", "maio", "junho", "agosto", "outubro", "novembro", "dezembro")
+    data.innerHTML = dayName[now.getDay()] + ", " + now.getDate() + " de " + monName[now.getMonth()] + " de " + now.getFullYear() + "."
+
 
     if (localStorage.getItem('todos') === null) {
         todos = [];
