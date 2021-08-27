@@ -5,11 +5,12 @@
 }
 
 body {
-    background: linear-gradient(1200deg, #99b6e8, #1f0757);
+    animation: color-change-2x 10s linear infinite alternate both;
     color: white;
     font-family: 'Poppins', sans-serif;
-    min-height: 100vh;
+    min-height: 90vh;
     overflow-x: hidden;
+    padding-bottom: 40px;
 }
 
 header {
@@ -24,6 +25,35 @@ header {
     flex-direction: column;
 }
 
+footer {
+    position: fixed;
+    BOTTOM: 0;
+    height: 30px;
+    color: rgb(225, 225, 225);
+    background-color: rgba(0, 0, 0, 0.5);
+    min-width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer i {
+    color: #f7df1e;
+    font-size: 1.5rem;
+    margin: 0 5px;
+}
+
+footer a {
+    color: rgb(225, 225, 225);
+    text-decoration: none;
+    margin: 0 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+footer a:hover {
+    color: white;
+}
+
 form {
     min-height: 11vh;
     display: flex;
@@ -33,6 +63,7 @@ form {
 
 form input {
     min-width: 30vw;
+    margin: 7px;
 }
 
 form input,
@@ -42,6 +73,10 @@ form button {
     border: none;
     border-radius: 0;
     background: white;
+}
+
+form button {
+    padding: 0.45rem;
 }
 
 textarea:focus,
@@ -58,7 +93,7 @@ form button {
     cursor: pointer;
     transition: all 0.3s ease;
     border-radius: 5px;
-    transform: translateX(-7px);
+    transform: translateX(-14px);
 }
 
 form button:hover {
@@ -169,7 +204,7 @@ select {
     color: #4219a2;
     width: 10rem;
     cursor: pointer;
-    padding: .9rem;
+    padding: .75rem;
     font-size: 1rem;
 }
 
@@ -179,7 +214,7 @@ select {
     background: #4219a2;
     top: 0;
     right: 0;
-    padding: .7rem;
+    padding: .65rem;
     pointer-events: none;
     transition: all 0.3s ease;
 }
@@ -189,9 +224,50 @@ select {
     color: #4219a2;
 }
 
+.error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 1rem;
+    text-shadow: red .05rem .05rem;
+}
+
+
+/* animations */
+
 .fade-in-bottom {
     -webkit-animation: fade-in-bottom .6s cubic-bezier(.39, .575, .565, 1.000) both;
     animation: fade-in-bottom .6s cubic-bezier(.39, .575, .565, 1.000) both
+}
+
+.shake-horizontal {
+    animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+}
+
+@keyframes shake-horizontal {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+    10%,
+    30%,
+    50%,
+    70% {
+        transform: translateX(-10px);
+    }
+    20%,
+    40%,
+    60% {
+        transform: translateX(10px);
+    }
+    80% {
+        transform: translateX(8px);
+    }
+    90% {
+        transform: translateX(-8px);
+    }
 }
 
 @-webkit-keyframes fade-in-bottom {
@@ -256,5 +332,14 @@ select {
         -webkit-transform-origin: -100% 50%;
         transform-origin: -100% 50%;
         opacity: 1
+    }
+}
+
+@keyframes color-change-2x {
+    0% {
+        background: #19dcea
+    }
+    100% {
+        background: #b22cff
     }
 }
