@@ -337,9 +337,9 @@ select {
 
 @keyframes color-change-2x {
     0% {
-        background: #19dcea
+        background: #4fbac2
     }
     100% {
-        background: #b22cff
+        background: #4d4caf
     }
 }
