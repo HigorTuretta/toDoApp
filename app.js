@@ -232,9 +232,6 @@ function getTodos() {
             pendingTodos.push(allTodos[i]);
         }
     }
-    pendingTodos.forEach(function(todo) {
-        todoList.appendChild(todo);
-    });
 
     pendingTodos.forEach(function(todo) {
         //Todo DIV
