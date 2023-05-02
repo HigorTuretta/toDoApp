@@ -220,7 +220,6 @@ function getTodos() {
   todoList.innerHTML = ""; // limpa a lista antes de adicionar os novos todos
 
   todosToDisplay.forEach(todo => {
-     console.log(todo)
     // Todo DIV
     const todoDiv = document.createElement("div");
     todoDiv.classList.add("todo");
@@ -229,7 +228,7 @@ function getTodos() {
     const newTodo = document.createElement("li");
     const todoText = document.createElement("p");
     todoText.classList.add("todo-text");
-    todoText.innerText = todo.text;
+    todoText.innerText = todo;
     newTodo.appendChild(todoText);
     newTodo.classList.add("todo-item");
     todoDiv.appendChild(newTodo);
