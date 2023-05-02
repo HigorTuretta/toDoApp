@@ -220,6 +220,7 @@ function getTodos() {
   todoList.innerHTML = ""; // limpa a lista antes de adicionar os novos todos
 
   todosToDisplay.forEach(todo => {
+     console.log(todo)
     // Todo DIV
     const todoDiv = document.createElement("div");
     todoDiv.classList.add("todo");
