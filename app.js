@@ -206,7 +206,6 @@ function getCompleteTodos() {
 }
 
 function getTodos() {
-    let todos;
 
     now = new Date
     dayName = new Array("Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado")
@@ -214,11 +213,28 @@ function getTodos() {
     data.innerHTML = dayName[now.getDay()] + ", " + now.getDate() + " de " + monName[now.getMonth()] + " de " + now.getFullYear() + "."
 
 
+   let todos;
     if (localStorage.getItem('todos') === null) {
         todos = [];
     } else {
         todos = JSON.parse(localStorage.getItem('todos'));
     }
+    
+    const allTodos = todoList.childNodes;
+    const pendingTodos = [];
+    for (let i = 0; i < allTodos.length; i++) {
+        if (!allTodos[i].classList || !allTodos[i].classList.contains("completed")) {
+            pendingTodos.push(allTodos[i]);
+        }
+    }
+    for (let i = 0; i < allTodos.length; i++) {
+        if (allTodos[i].classList && allTodos[i].classList.contains("completed")) {
+            pendingTodos.push(allTodos[i]);
+        }
+    }
+    pendingTodos.forEach(function(todo) {
+        todoList.appendChild(todo);
+    });
 
     todos.forEach(function(todo) {
         //Todo DIV
