@@ -206,63 +206,49 @@ function getCompleteTodos() {
 }
 
 function getTodos() {
+  const now = new Date();
+  const dayName = ["Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado"];
+  const monName = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+  data.innerHTML = `${dayName[now.getDay()]}, ${now.getDate()} de ${monName[now.getMonth()]} de ${now.getFullYear()}.`;
 
-    now = new Date
-    dayName = new Array("Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado")
-    monName = new Array("janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro")
-    data.innerHTML = dayName[now.getDay()] + ", " + now.getDate() + " de " + monName[now.getMonth()] + " de " + now.getFullYear() + "."
+  let todos = JSON.parse(localStorage.getItem("todos")) || [];
+  const pendingTodos = todos.filter(todo => !todo.completed);
+  const completedTodos = todos.filter(todo => todo.completed);
 
+  const todosToDisplay = [...pendingTodos, ...completedTodos];
 
-   let todos;
-    if (localStorage.getItem('todos') === null) {
-        todos = [];
-    } else {
-        todos = JSON.parse(localStorage.getItem('todos'));
-    }
-    
-    const allTodos = todoList.childNodes;
-    const pendingTodos = [];
-    for (let i = 0; i < allTodos.length; i++) {
-        if (!allTodos[i].classList || !allTodos[i].classList.contains("completed")) {
-            pendingTodos.push(allTodos[i]);
-        }
-    }
-    for (let i = 0; i < allTodos.length; i++) {
-        if (allTodos[i].classList && allTodos[i].classList.contains("completed")) {
-            pendingTodos.push(allTodos[i]);
-        }
-    }
+  todoList.innerHTML = ""; // limpa a lista antes de adicionar os novos todos
 
-    pendingTodos.forEach(function(todo) {
-        //Todo DIV
-        const todoDiv = document.createElement('div');
-        todoDiv.classList.add('todo')
+  todosToDisplay.forEach(todo => {
+    // Todo DIV
+    const todoDiv = document.createElement("div");
+    todoDiv.classList.add("todo");
 
-        //Create LI
-        const newTodo = document.createElement('li');
-        const todoText = document.createElement('p');
-        todoText.classList.add('todo-text');
-        todoText.innerText = todo;
-        newTodo.appendChild(todoText);
-        newTodo.classList.add('todo-item');
-        todoDiv.appendChild(newTodo);
+    // Create LI
+    const newTodo = document.createElement("li");
+    const todoText = document.createElement("p");
+    todoText.classList.add("todo-text");
+    todoText.innerText = todo.text;
+    newTodo.appendChild(todoText);
+    newTodo.classList.add("todo-item");
+    todoDiv.appendChild(newTodo);
 
-        //Check button
-        const completeButton = document.createElement('button');
-        completeButton.innerHTML = '<i class="fas fa-check"></i>';
-        completeButton.classList.add('complete-btn');
-        todoDiv.appendChild(completeButton);
+    // Check button
+    const completeButton = document.createElement("button");
+    completeButton.innerHTML = '<i class="fas fa-check"></i>';
+    completeButton.classList.add("complete-btn");
+    todoDiv.appendChild(completeButton);
 
-        //Trash Button
-        const trashbutton = document.createElement('button');
-        trashbutton.innerHTML = '<i class="fas fa-trash"></i>';
-        trashbutton.classList.add('trash-btn');
-        todoDiv.appendChild(trashbutton);
+    // Trash Button
+    const trashbutton = document.createElement("button");
+    trashbutton.innerHTML = '<i class="fas fa-trash"></i>';
+    trashbutton.classList.add("trash-btn");
+    todoDiv.appendChild(trashbutton);
 
-        //append to list
-        todoDiv.classList.add('fade-in-bottom');
-        todoList.appendChild(todoDiv);
-    });
+    // Append to list
+    todoDiv.classList.add("fade-in-bottom");
+    todoList.appendChild(todoDiv);
+  });
 }
 
 function removeCompleteTodos(todo) {
