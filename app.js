@@ -236,7 +236,7 @@ function getTodos() {
         todoList.appendChild(todo);
     });
 
-    todos.forEach(function(todo) {
+    pendingTodos.forEach(function(todo) {
         //Todo DIV
         const todoDiv = document.createElement('div');
         todoDiv.classList.add('todo')
