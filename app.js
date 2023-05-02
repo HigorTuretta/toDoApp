@@ -157,7 +157,7 @@ function saveLocalTodos(todo) {
         todos = JSON.parse(localStorage.getItem('todos'));
     }
     //salva no array
-    todos.push(todo);
+    todos.unshift(todo);
     //salva no storage
     localStorage.setItem('todos', JSON.stringify(todos));
 }
