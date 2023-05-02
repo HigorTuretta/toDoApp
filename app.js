@@ -49,7 +49,7 @@ function addTodo(event) {
 
         //append to list
         todoDiv.classList.add('fade-in-bottom');
-        todoList.insertBefore(todoDiv, todolist.firstChild);
+        todoList.insertBefore(todoDiv, todoList.firstChild);
 
         //Adiciona para o localStorage
         saveLocalTodos(todoInput.value);
